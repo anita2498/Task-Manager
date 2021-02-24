@@ -27,7 +27,11 @@
 
 			</table>
 		</form>
+<<<<<<< HEAD
 *****************************************************************<br/>
+=======
+
+>>>>>>> 7958b1d (added error page)
 New here?? <a href="/register"> Register Here</a>
 	</div>
 

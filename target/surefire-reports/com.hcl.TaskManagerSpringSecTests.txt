@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.hcl.TaskManagerSpringSecTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.327 s - in com.hcl.TaskManagerSpringSecTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.556 s - in com.hcl.TaskManagerSpringSecTests
+>>>>>>> 7958b1d (added error page)
