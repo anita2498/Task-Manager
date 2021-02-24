@@ -42,7 +42,6 @@ public class UserController {
 		return "user/login";
 
 	}
-	
 
 	@GetMapping("/register")
 	public String registration() {
@@ -84,24 +83,23 @@ public class UserController {
 	@PostMapping("/create")
 	public String createTask(@ModelAttribute("task") Tasks task,
 			/* @RequestParam(name="user")String userId, */ ModelMap model) {
-<<<<<<< HEAD
+
 		task.setUser(user);
-=======
-		try{
-			task.setUser(user);
+
 		
->>>>>>> 7958b1d (added error page)
-		service.saveOrUpdate(task);
-		System.out.println(task.toString());
-		model.put("tasks", service.getAllTasksByUser(user));
-		return "task/display";
-<<<<<<< HEAD
-=======
-		}catch(Exception e) {
-			return "task/error1";
-		}
->>>>>>> 7958b1d (added error page)
+			task.setUser(user);
+
+			service.saveOrUpdate(task);
+			System.out.println(task.toString());
+			model.put("tasks", service.getAllTasksByUser(user));
+			return "task/display";
+
+			/*
+			 * } catch (Exception e) { return "task/error1"; }
+			 */
+
 	}
+
 	@GetMapping("/deletefromwelcome")
 	public String deletefromwelcome(ModelMap model) {
 		model.put("msg", "Select task to delete");
@@ -110,9 +108,7 @@ public class UserController {
 	}
 
 	@PostMapping("/delete")
-<<<<<<< HEAD
-	public String delete(@RequestParam(name = "selected") String id, ModelMap model) {
-=======
+
 	public String delete(@RequestParam(name = "selected", required = false) String id,ModelMap model, Tasks task) {
 		if(id==null) {
 			model.put("msg", "Please select a task to delete");
@@ -125,7 +121,7 @@ public class UserController {
 
 			return "task/display";
 		}
->>>>>>> 7958b1d (added error page)
+
 		System.out.println(id);
 		model.put("task", service.findById(Integer.parseInt(id)).get());
 		return "task/delete";
@@ -160,7 +156,7 @@ public class UserController {
 
 	@PostMapping("/update")
 	public String update(@RequestParam(name = "selected", required = false) String id, ModelMap model, Tasks task) {
-		if(id==null) {
+		if (id == null) {
 			model.put("msg", "Please select an option to update");
 			if (!service.getAllTasksByUser(user).isEmpty()) {
 
@@ -171,7 +167,7 @@ public class UserController {
 
 			return "task/display";
 		}
-		
+
 		System.out.println(id);
 		model.put("task", service.findById(Integer.parseInt(id)).get());
 		return "task/update";
@@ -184,7 +180,7 @@ public class UserController {
 		model.put("msg", "task updated");
 		service.saveOrUpdate(task);
 		model.put("tasks", service.getAllTasksByUser(user));
-		//model.put(", model)
+		// model.put(", model)
 		return "task/display";
 
 	}

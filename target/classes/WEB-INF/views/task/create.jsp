@@ -40,9 +40,9 @@ th, td {
 				<tr>
 
 					
-					<td><input type="text" name="taskname" id="taskname"/></td>
-					<td><input type="date" name="startdate" id="startdate" /></td>
-					<td><input type="date" name="enddate" id="enddate"/></td>
+					<td><input type="text" name="taskname" id="taskname" required/></td>
+					<td><input type="date" name="startdate" id="startdate" required/></td>
+					<td><input type="date" name="enddate" id="enddate" required/></td>
 					<td><textarea name="description" id="description"></textarea></td>
 					<td><select name="severity" id="severity">
 							<option value="HIGH">HIGH</option>
