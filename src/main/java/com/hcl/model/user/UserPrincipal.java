@@ -15,12 +15,12 @@ public class UserPrincipal implements UserDetails {
 	/**
 	* 
 	*/
-	private static final long serialVersionUID = 1L; // private User user;
+	private static final long serialVersionUID = 1L; 
 	private String userName;
 	private String password;
 	private List<GrantedAuthority> authorities;
 
-	public UserPrincipal(User user) { // super(); // this.user = user;
+	public UserPrincipal(User user) { 
 		this.userName = user.getUsername();
 		this.password = user.getPwd();
 		this.authorities = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)

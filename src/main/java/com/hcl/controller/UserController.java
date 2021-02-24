@@ -1,19 +1,14 @@
 package com.hcl.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hcl.model.Tasks;
@@ -49,6 +44,7 @@ public class UserController {
 		return "user/registration";
 	}
 
+	// method to add a user to the database
 	@PostMapping("/register")
 	public String admin(@RequestParam(name = "username") String username, @RequestParam(name = "pwd") String pwd,
 			@RequestParam(name = "role") String role) {
@@ -61,6 +57,8 @@ public class UserController {
 		return "user/login";
 	}
 
+	// Once the user is authenticated at login, using spring security, the welcome
+	// page is displayed with the options
 	@GetMapping("/")
 	public String welcome(ModelMap model) {
 
@@ -74,32 +72,31 @@ public class UserController {
 		return "task/welcome";
 	}
 
+	// gets the userid of the logged in user
 	@GetMapping("/create")
 	public String create(ModelMap model) {
 		model.put("userid", user.getUserid());
 		return "task/create";
 	}
 
+	// can create a task and on submission takes you to display page
 	@PostMapping("/create")
-	public String createTask(@ModelAttribute("task") Tasks task,
-			/* @RequestParam(name="user")String userId, */ ModelMap model) {
-
+	public String createTask(@ModelAttribute("task") Tasks task, ModelMap model) {
 		task.setUser(user);
+		task.setUser(user);
+		service.saveOrUpdate(task);
+		System.out.println(task.toString());
+		model.put("tasks", service.getAllTasksByUser(user));
+		return "task/display";
 
-		
-			task.setUser(user);
-
-			service.saveOrUpdate(task);
-			System.out.println(task.toString());
-			model.put("tasks", service.getAllTasksByUser(user));
-			return "task/display";
-
-			/*
-			 * } catch (Exception e) { return "task/error1"; }
-			 */
+		/*
+		 * } catch (Exception e) { return "task/error1"; }
+		 */
 
 	}
 
+	// user can click the delete button from the welcome page and be taken to the
+	// display page where they can select a task to delete
 	@GetMapping("/deletefromwelcome")
 	public String deletefromwelcome(ModelMap model) {
 		model.put("msg", "Select task to delete");
@@ -107,10 +104,11 @@ public class UserController {
 		return "task/display";
 	}
 
+	// the user is required to select a task that needs to be deleted to proceed
+	// with the operation and the same task id is noted
 	@PostMapping("/delete")
-
-	public String delete(@RequestParam(name = "selected", required = false) String id,ModelMap model, Tasks task) {
-		if(id==null) {
+	public String delete(@RequestParam(name = "selected", required = false) String id, ModelMap model, Tasks task) {
+		if (id == null) {
 			model.put("msg", "Please select a task to delete");
 			if (!service.getAllTasksByUser(user).isEmpty()) {
 
@@ -127,6 +125,7 @@ public class UserController {
 		return "task/delete";
 	}
 
+	// asks the user for confirmation and deletes the task
 	@PostMapping("/deleteconf")
 	public String deleteconf(@RequestParam(name = "task.id") String id, ModelMap model) {
 		System.out.println(service.findById(Integer.parseInt(id)).get());
@@ -135,6 +134,7 @@ public class UserController {
 		return "task/welcome";
 	}
 
+	// is to display the tasks
 	@GetMapping("/display")
 	public String display(ModelMap model) {
 		if (!service.getAllTasksByUser(user).isEmpty()) {
@@ -147,6 +147,8 @@ public class UserController {
 		return "task/display";
 	}
 
+	// to update from the welcome page, the user is take to the display page to
+	// carry out the update operation
 	@GetMapping("/updatefromwelcome")
 	public String updatefromwelcome(ModelMap model) {
 		model.put("msg", "Select task to update");
@@ -154,6 +156,8 @@ public class UserController {
 		return "task/display";
 	}
 
+	// the user is required to select a task that needs to be updated to proceed
+	// with the operation and the same task id is noted
 	@PostMapping("/update")
 	public String update(@RequestParam(name = "selected", required = false) String id, ModelMap model, Tasks task) {
 		if (id == null) {
@@ -173,6 +177,7 @@ public class UserController {
 		return "task/update";
 	}
 
+	// asks the user for confirmation and updates the task
 	@PostMapping("/updateconf")
 	public String updateconf(@ModelAttribute("task") Tasks task, ModelMap model) {
 		task.setUser(user);
@@ -180,7 +185,6 @@ public class UserController {
 		model.put("msg", "task updated");
 		service.saveOrUpdate(task);
 		model.put("tasks", service.getAllTasksByUser(user));
-		// model.put(", model)
 		return "task/display";
 
 	}
