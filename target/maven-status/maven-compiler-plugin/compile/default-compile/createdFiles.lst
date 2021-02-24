@@ -1,0 +1,12 @@
+com\hcl\controller\UserController.class
+com\hcl\controller\AdminController.class
+com\hcl\model\user\UserPrincipal.class
+com\hcl\SecurityConfiguration.class
+com\hcl\model\TaskRepo.class
+com\hcl\model\user\UserRepo.class
+com\hcl\service\TaskService.class
+com\hcl\TaskManagerSpringSec.class
+com\hcl\model\user\User.class
+com\hcl\service\TaskServiceImpl.class
+com\hcl\model\user\MyUserDetailsService.class
+com\hcl\model\Tasks.class
