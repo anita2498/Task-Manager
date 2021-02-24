@@ -28,7 +28,7 @@
 			</table>
 		</form>
 
-New here?? <a href="/register"> Register Here</a>
+New User? <a href="/register"> Register Here</a>
 	</div>
 
 </body>

@@ -7,10 +7,28 @@
 <meta charset="ISO-8859-1">
 <title>update task</title>
 </head>
+<style>
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+</style>
 <body>
 ${msg}
 <div align="center">
 		<form action="updateconf" method="post" ><!-- modelAttribute="task" -->
+		<a href="/logout"> <button class="button">logout</button> </a>&nbsp;&nbsp;
+		<a href="/"><button class="button">Back to Home</button></a>
+		<br />
+		<br />
 			<table style="width: 75%">
 				<tr>
 					<th> Task Id </th>
@@ -53,11 +71,6 @@ ${msg}
 		</form>
 	</div>
 &nbsp;
-		<a href="/logout">
-			<button>logout</button>
-		</a>&nbsp;&nbsp;
-		<a href="/">
-			<button>Back to Home</button>
-		</a>
+		
 </body>
 </html>

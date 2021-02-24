@@ -21,10 +21,26 @@ th, td {
 	padding: 15px;
 	text-align: center;
 }
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
 </style>
 <body>
 	<div align="center">
 		<form action="create" method="post" ><!-- modelAttribute="task" -->
+		<a href="/logout"> <button class="button">logout</button> </a>&nbsp;&nbsp;
+		<a href="/"> <button class="button">Back to Home</button> </a>
+		<br />
+		<br />
 			<table style="width: 75%">
 				<tr>
 					
@@ -58,11 +74,6 @@ th, td {
 		</form>
 	</div>
 	&nbsp;&nbsp;
-		<a href="/logout">
-			<button>logout</button>
-		</a>&nbsp;&nbsp;
-		<a href="/">
-			<button>Back to Home</button>
-		</a>
+		
 </body>
 </html>
